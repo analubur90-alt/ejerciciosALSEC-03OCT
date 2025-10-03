@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+using namespace std;
+
+int main(int argc, char* argv[]) {
+    if (argc != 4) {
+        cout << "Uso: " << argv[0] << " <num1> <operador> <num2>" << endl;
+        return 1;
+    }
+
+    try {
+        float num1 = stof(argv[1]);
+        string op = argv[2];
+        float num2 = stof(argv[3]);
+        float resultado = 0;
+
+        if (op == "+") resultado = num1 + num2;
+        else if (op == "-") resultado = num1 - num2;
+        else if (op == "x" || op == "*") resultado = num1 * num2;
+        else if (op == "/") {
+            if (num2 == 0) {
+                cout << "Error: division por cero" << endl;
+                return 1;
+            }
+            resultado = num1 / num2;
+        } else {
+            cout << "Operador invalido" << endl;
+            return 1;
+        }
+
+        cout << "El resultado de la operacion es: " << resultado << endl;
+    } catch (exception& e) {
+        cout << "Ha ingresado valores inadecuados." << endl;
+        cout << "Uso: ./<ejecutable> <num1> <operador> <num2>" << endl;
+        return 1;
+    }
+
+    return 0;
+}
